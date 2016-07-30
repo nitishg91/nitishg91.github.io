@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1469902790.161145
+_modified_time = 1469902927.721098
 _enable_loop = True
 _template_filename = '/Users/nitishg/nikola/lib/python3.4/site-packages/nikola/data/themes/base/templates/authors.tmpl'
 _template_uri = 'authors.tmpl'
@@ -28,11 +28,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        messages = context.get('messages', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        items = context.get('items', UNDEFINED)
         hidden_authors = context.get('hidden_authors', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -48,11 +48,11 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        messages = context.get('messages', UNDEFINED)
-        items = context.get('items', UNDEFINED)
         def content():
             return render_content(context)
+        items = context.get('items', UNDEFINED)
         hidden_authors = context.get('hidden_authors', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n<article class="authorindex">\n')
         if items:
@@ -75,6 +75,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "authors.tmpl", "filename": "/Users/nitishg/nikola/lib/python3.4/site-packages/nikola/data/themes/base/templates/authors.tmpl", "line_map": {"64": 11, "65": 11, "66": 11, "27": 0, "68": 11, "37": 2, "70": 16, "42": 17, "76": 70, "48": 4, "67": 11, "69": 14, "57": 4, "58": 6, "59": 7, "60": 7, "61": 7, "62": 9, "63": 10}}
+{"line_map": {"64": 11, "65": 11, "66": 11, "27": 0, "68": 11, "37": 2, "70": 16, "42": 17, "76": 70, "48": 4, "67": 11, "69": 14, "57": 4, "58": 6, "59": 7, "60": 7, "61": 7, "62": 9, "63": 10}, "source_encoding": "utf-8", "uri": "authors.tmpl", "filename": "/Users/nitishg/nikola/lib/python3.4/site-packages/nikola/data/themes/base/templates/authors.tmpl"}
 __M_END_METADATA
 """
