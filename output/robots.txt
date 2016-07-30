@@ -1,4 +1,4 @@
-Sitemap: https://nitshg.github.io/sitemapindex.xml
+Sitemap: https://nitishg91.github.io/sitemapindex.xml
 
 User-Agent: *
-Host: nitshg.github.io
+Host: nitishg91.github.io
