@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1469902927.642639
+_modified_time = 1469903050.084417
 _enable_loop = True
 _template_filename = 'templates/book.tmpl'
 _template_uri = 'book.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['extra_head', 'extra_js', 'content']
+_exports = ['extra_head', 'content', 'extra_js']
 
 
 def _mako_get_namespace(context, name):
@@ -20,14 +20,14 @@ def _mako_get_namespace(context, name):
         _mako_generate_namespaces(context)
         return context.namespaces[(__name__, name)]
 def _mako_generate_namespaces(context):
+    ns = runtime.TemplateNamespace('comments', context._clean_inheritance_tokens(), templateuri='comments_helper.tmpl', callables=None,  calling_uri=_template_uri)
+    context.namespaces[(__name__, 'comments')] = ns
+
     ns = runtime.TemplateNamespace('helper', context._clean_inheritance_tokens(), templateuri='post_helper.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'helper')] = ns
 
     ns = runtime.TemplateNamespace('pheader', context._clean_inheritance_tokens(), templateuri='post_header.tmpl', callables=None,  calling_uri=_template_uri)
     context.namespaces[(__name__, 'pheader')] = ns
-
-    ns = runtime.TemplateNamespace('comments', context._clean_inheritance_tokens(), templateuri='comments_helper.tmpl', callables=None,  calling_uri=_template_uri)
-    context.namespaces[(__name__, 'comments')] = ns
 
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
@@ -38,10 +38,10 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def extra_head():
             return render_extra_head(context._locals(__M_locals))
+        parent = context.get('parent', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         post = context.get('post', UNDEFINED)
-        parent = context.get('parent', UNDEFINED)
         def extra_js():
             return render_extra_js(context._locals(__M_locals))
         __M_writer = context.writer()
@@ -84,18 +84,6 @@ def render_extra_head(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
-def render_extra_js(context,**pageargs):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        def extra_js():
-            return render_extra_js(context)
-        __M_writer = context.writer()
-        __M_writer('\n    <script src="https://cdnjs.cloudflare.com/ajax/libs/Flowtype.js/1.1.0/flowtype.min.js"></script>\n    <script>\n        $(\'#scrolling-cont\').flowtype({\n            minimum: 500,\n            maximum: 1200,\n            minFont: 20,\n            maxFont: 40,\n            fontRatio: 50\n        });\n        $(document).ready(function() {\n            var elem = $(\'#scrolling-cont\');\n            elem.click(function(event) {\n                var x1 = elem.position().left;\n                var pw = elem.width() + 20;\n                var x2 = event.pageX;\n                if (x2 - x1 < pw / 2) {\n                    pw = -pw;\n                }\n                elem.animate({\n                    scrollLeft: \'+=\' + pw\n                }, 500)\n            });\n        });\n    </script>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -113,8 +101,20 @@ def render_content(context,**pageargs):
         context.caller_stack._pop_frame()
 
 
+def render_extra_js(context,**pageargs):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        def extra_js():
+            return render_extra_js(context)
+        __M_writer = context.writer()
+        __M_writer('\n    <script src="https://cdnjs.cloudflare.com/ajax/libs/Flowtype.js/1.1.0/flowtype.min.js"></script>\n    <script>\n        $(\'#scrolling-cont\').flowtype({\n            minimum: 500,\n            maximum: 1200,\n            minFont: 20,\n            maxFont: 40,\n            fontRatio: 50\n        });\n        $(document).ready(function() {\n            var elem = $(\'#scrolling-cont\');\n            elem.click(function(event) {\n                var x1 = elem.position().left;\n                var pw = elem.width() + 20;\n                var x2 = event.pageX;\n                if (x2 - x1 < pw / 2) {\n                    pw = -pw;\n                }\n                elem.animate({\n                    scrollLeft: \'+=\' + pw\n                }, 500)\n            });\n        });\n    </script>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 """
 __M_BEGIN_METADATA
-{"line_map": {"66": 117, "72": 7, "23": 2, "79": 7, "80": 8, "81": 8, "99": 79, "87": 92, "26": 3, "93": 92, "35": 0, "106": 79, "107": 84, "108": 84, "109": 85, "110": 85, "29": 4, "48": 2, "49": 3, "50": 4, "51": 5, "116": 110, "56": 77, "61": 90}, "source_encoding": "utf-8", "uri": "book.tmpl", "filename": "templates/book.tmpl"}
+{"filename": "templates/book.tmpl", "uri": "book.tmpl", "source_encoding": "utf-8", "line_map": {"66": 117, "72": 7, "23": 4, "79": 7, "80": 8, "81": 8, "87": 79, "26": 2, "29": 3, "94": 79, "95": 84, "96": 84, "97": 85, "98": 85, "35": 0, "104": 92, "110": 92, "48": 2, "49": 3, "50": 4, "51": 5, "116": 110, "56": 77, "61": 90}}
 __M_END_METADATA
 """
